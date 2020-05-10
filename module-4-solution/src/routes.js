@@ -15,6 +15,16 @@ function RoutesConfig($stateProvider,$urlRouterProvider)
     templateUrl : 'templates/home.html'
   });
 
+  $stateProvider.state('categories',{
+    url : '/categories' ,
+    templateUrl : 'templates/categories.html' ,
+    controller: 'CategoriesViewController as categoryList',
+    resolve: {
+      items: ['MenuDataService', function (MenuDataService) {
+        return MenuDataService.getAllCategories();
+      }]
+    }
+  });
 }
 
 })();
